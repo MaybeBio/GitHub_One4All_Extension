@@ -2,13 +2,13 @@ import { defineConfig } from 'wxt';
 
 export default defineConfig({
   manifest: {
-    name: 'Repo Tools for GitHub',
+    name: 'GitHub One4All',
     description:
-      'Open any public GitHub repository in DeepWiki, GitDiagram, Gitingest, GitMCP, online IDEs and 30+ derived tools.',
+      'One menu for DeepWiki, GitDiagram, Gitingest, online IDEs and 30+ tools on any GitHub repository.',
     permissions: ['storage', 'tabs'],
     host_permissions: ['https://github.com/*', 'https://api.github.com/*'],
     action: {
-      default_title: 'Repo Tools',
+      default_title: 'GitHub One4All',
       default_icon: {
         16: 'icon/16.png',
         32: 'icon/32.png',

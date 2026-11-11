@@ -1,11 +1,11 @@
-# GitHub Repo Tools Extension — Design
+# GitHub One4All Extension — Design
 
 Date: 2026-11-11
 Status: Approved for implementation planning
 
 ## 1. Goal and success criteria
 
-A Chromium Manifest V3 extension that injects a single **`🚀 Repo Tools ▾`** button into every public GitHub repository page. Clicking it opens a grouped, searchable dropdown that links to third-party GitHub-derived sites (DeepWiki, GitDiagram, Gitingest, GitMCP, GitHub.dev, OSS Insight, …) and a few GitHub built-in shortcuts, resolved from the current repository URL.
+A Chromium Manifest V3 extension that injects a single **`🚀 One4All ▾`** button into every public GitHub repository page. Clicking it opens a grouped, searchable dropdown that links to third-party GitHub-derived sites (DeepWiki, GitDiagram, Gitingest, GitMCP, GitHub.dev, OSS Insight, …) and a few GitHub built-in shortcuts, resolved from the current repository URL.
 
 Success criteria:
 
@@ -188,7 +188,7 @@ Git-Stats, Socket.dev and Snyk Advisor are excluded: they require manual input, 
 ### Button and menu
 
 - Inject `<li data-repo-tools-btn>` at the start of `.pagehead-actions`; visual style uses GitHub's `btn btn-sm`.
-- Label: `🚀 Repo Tools ▾`.
+- Label: `🚀 One4All ▾`.
 - Panel: width 320px, max-height 420px, anchored right under the button, z-index above GitHub chrome.
 - When open: focus the search input; Esc, outside click, or a second button click closes it. Only one panel exists.
 - Search: case-insensitive substring match over name, description, and category label; empty result shows “No tools match”.

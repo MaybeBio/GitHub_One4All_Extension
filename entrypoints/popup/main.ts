@@ -156,10 +156,10 @@ async function renderRepoChip(): Promise<void> {
     const parsed = tab?.url ? parseRepo(tab.url, navigator.language) : null;
     repoChip.textContent = parsed
       ? `${parsed.context.owner}/${parsed.context.repo}`
-      : 'Open a GitHub repo to use Repo Tools';
+      : 'Open a GitHub repo to use One4All';
     repoChip.classList.toggle('active', parsed !== null);
   } catch {
-    repoChip.textContent = 'Open a GitHub repo to use Repo Tools';
+    repoChip.textContent = 'Open a GitHub repo to use One4All';
     repoChip.classList.remove('active');
   }
 }
@@ -189,7 +189,7 @@ form.addEventListener('submit', (event) => {
 });
 
 resetButton.addEventListener('click', () => {
-  if (!confirm('Reset all Repo Tools settings? This clears custom tools.')) return;
+  if (!confirm('Reset all GitHub One4All settings? This clears custom tools.')) return;
   state = { enabledProviders: {}, customProviders: [] };
   void save({ enabledProviders: {}, customProviders: [] });
   renderProviders();

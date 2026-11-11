@@ -134,9 +134,9 @@ export default defineContentScript({
       button.className = 'repo-tools-btn btn btn-sm';
       button.setAttribute('aria-haspopup', 'menu');
       button.setAttribute('aria-expanded', 'false');
-      button.setAttribute('aria-label', 'Open Repo Tools');
+      button.setAttribute('aria-label', 'Open GitHub One4All');
       button.innerHTML =
-        '<span class="repo-tools-rocket" aria-hidden="true">🚀</span> Repo Tools <span class="repo-tools-caret" aria-hidden="true">▾</span>';
+        '<span class="repo-tools-rocket" aria-hidden="true">🚀</span> One4All <span class="repo-tools-caret" aria-hidden="true">▾</span>';
 
       const panel = document.createElement('div');
       panel.className = 'repo-tools-panel';
