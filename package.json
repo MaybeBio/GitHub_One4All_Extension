@@ -1,0 +1,19 @@
+{
+  "name": "github-repo-tools",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "test": "vitest run",
+    "typecheck": "wxt prepare && tsc --noEmit"
+  },
+  "devDependencies": {
+    "jsdom": "^31.0.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4",
+    "wxt": "^0.21.5"
+  }
+}
