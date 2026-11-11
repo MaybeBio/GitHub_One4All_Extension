@@ -29,16 +29,16 @@
 
 ## 安装
 
-需要 Node.js 18+ 和 Chromium 系浏览器。
+从 [Releases](https://github.com/MaybeBio/GitHub_One4All_Extension/releases/latest) 下载最新 zip，解压后打开 `chrome://extensions`，启用开发者模式，点击「加载已解压的扩展程序」，选择解压出的文件夹。
+
+自行构建需要 Node.js 18+：
 
 ```bash
 npm install
 npm run build
 ```
 
-`chrome://extensions` → 开发者模式 → 加载已解压的扩展程序 → 选择 `.output/chrome-mv3`。
-
-分发包：`npm run zip`，产物在 `.output/github-one4all-extension-1.0.0-chrome.zip`。
+构建结果在 `.output/chrome-mv3`，`npm run zip` 可生成分发包。
 
 ## 使用
 
@@ -81,11 +81,6 @@ https://example.com/{owner}/{repo}
 - 仅公开仓库；检测失败时按非公开处理，不注入按钮。
 - 不读取仓库内容，不使用 token；除仓库 URL 外不向第三方发送信息。
 - 权限仅 `storage`、`tabs`，主机权限为 `github.com` 与 `api.github.com`。
-
-## 文档
-
-- [设计说明](docs/superpowers/specs/2026-11-11-github-repo-tools-extension-design.md)
-- [工具可用性验证](docs/provider-verification.md)
 
 ## 未收录
 

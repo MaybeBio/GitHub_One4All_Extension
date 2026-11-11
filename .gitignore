@@ -2,6 +2,7 @@ node_modules/
 .output/
 .wxt/
 .superpowers/
+refers_template/
 *.log
 CLAUDE.md
 
