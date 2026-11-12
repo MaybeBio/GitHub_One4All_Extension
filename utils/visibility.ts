@@ -38,10 +38,11 @@ export async function isRepoPublic(
     } else if (response.status === 404) {
       isPrivate = true;
     } else {
-      return false;
+      // Rate limits or network failures are not evidence of privacy; don't hide the UI.
+      return true;
     }
   } catch {
-    return false;
+    return true;
   }
 
   try {

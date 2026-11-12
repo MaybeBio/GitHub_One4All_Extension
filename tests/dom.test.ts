@@ -75,6 +75,27 @@ describe('readDomVisibility', () => {
     expect(readDomVisibility(document)).toBe(false);
   });
 
+  it('reads repo visibility from embedded app JSON', () => {
+    document.body.innerHTML = `
+      <script type="application/json" data-target="react-app.embeddedData">
+        {"payload":{"sidebarAbout":{"repo":{"isPrivate":false}}}}
+      </script>
+    `;
+    expect(readDomVisibility(document)).toBe(false);
+
+    document.body.innerHTML = `
+      <script type="application/json" data-target="react-app.embeddedData">
+        {"payload":{"sidebarAbout":{"repo":{"isPrivate":true}}}}
+      </script>
+    `;
+    expect(readDomVisibility(document)).toBe(true);
+  });
+
+  it('ignores malformed embedded JSON', () => {
+    document.body.innerHTML = '<script type="application/json">{not json</script>';
+    expect(readDomVisibility(document)).toBeNull();
+  });
+
   it('returns null when no signal is present', () => {
     document.body.innerHTML = '<header><nav>menu</nav></header>';
     expect(readDomVisibility(document)).toBeNull();

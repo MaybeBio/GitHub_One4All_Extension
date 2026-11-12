@@ -27,6 +27,41 @@ export function findActionMount(doc: Document = document): ActionMount | null {
   return null;
 }
 
+function findRepoPrivacy(value: unknown, depth = 0): boolean | null {
+  if (depth > 12 || value === null || typeof value !== 'object') return null;
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const found = findRepoPrivacy(item, depth + 1);
+      if (found !== null) return found;
+    }
+    return null;
+  }
+  const record = value as Record<string, unknown>;
+  const repo = record.repo;
+  if (repo && typeof repo === 'object' && typeof (repo as { isPrivate?: unknown }).isPrivate === 'boolean') {
+    return (repo as { isPrivate: boolean }).isPrivate;
+  }
+  for (const key of Object.keys(record)) {
+    const found = findRepoPrivacy(record[key], depth + 1);
+    if (found !== null) return found;
+  }
+  return null;
+}
+
+function readEmbeddedVisibility(doc: Document): boolean | null {
+  for (const script of doc.querySelectorAll<HTMLScriptElement>('script[type="application/json"]')) {
+    const text = script.textContent;
+    if (!text || text.length > 1_000_000) continue;
+    try {
+      const found = findRepoPrivacy(JSON.parse(text));
+      if (found !== null) return found;
+    } catch {
+      // Ignore malformed or non-JSON payloads.
+    }
+  }
+  return null;
+}
+
 export function readDomVisibility(doc: Document = document): boolean | null {
   const meta = doc.querySelector('meta[name="octolytics-dimension-repository_public"]');
   const content = meta?.getAttribute('content');
@@ -42,5 +77,6 @@ export function readDomVisibility(doc: Document = document): boolean | null {
     if (text === 'private') return true;
     if (text === 'public') return false;
   }
-  return null;
+
+  return readEmbeddedVisibility(doc);
 }

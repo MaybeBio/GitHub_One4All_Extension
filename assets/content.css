@@ -4,6 +4,18 @@
   margin-left: 4px;
 }
 
+.repo-tools-float {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483000;
+}
+
+.repo-tools-float .repo-tools-panel {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+
 .repo-tools-btn {
   display: inline-flex !important;
   align-items: center !important;

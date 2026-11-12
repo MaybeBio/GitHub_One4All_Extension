@@ -78,7 +78,7 @@ https://example.com/{owner}/{repo}
 
 ## 隐私
 
-- 仅公开仓库；检测失败时按非公开处理，不注入按钮。
+- 私有仓库不显示按钮；非仓库页面不注入。
 - 不读取仓库内容，不使用 token；除仓库 URL 外不向第三方发送信息。
 - 权限仅 `storage`、`tabs`，主机权限为 `github.com` 与 `api.github.com`。
 

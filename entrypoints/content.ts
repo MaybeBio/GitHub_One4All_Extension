@@ -38,7 +38,6 @@ export default defineContentScript({
     let refreshToken = 0;
     let lastUrl = location.href;
     let debounceTimer: ReturnType<typeof setTimeout> | undefined;
-    let warnedMissingMount = false;
 
     function providerUrl(provider: Provider, context: UrlContext): string | null {
       try {
@@ -56,7 +55,9 @@ export default defineContentScript({
     }
 
     function removeButton(): void {
-      document.querySelector(`[${BUTTON_ATTR}]`)?.remove();
+      const root = document.querySelector<HTMLElement>(`[${BUTTON_ATTR}]`);
+      root?.closest('.repo-tools-float')?.remove();
+      root?.remove();
       currentContext = null;
     }
 
@@ -189,13 +190,12 @@ export default defineContentScript({
 
       const mount = findActionMount();
       if (!mount) {
-        if (!warnedMissingMount) {
-          console.debug('[repo-tools] no repository header anchor found; skipping injection');
-          warnedMissingMount = true;
-        }
+        const fallback = document.createElement('div');
+        fallback.className = 'repo-tools-float';
+        fallback.append(buildButton('div'));
+        document.body.append(fallback);
         return;
       }
-      warnedMissingMount = false;
       mount.parent.insertBefore(buildButton(mount.tag), mount.reference);
     }
 
